@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import {
   Box,
   Card,
@@ -10,51 +12,52 @@ import {
   Container,
 } from "@mui/material";
 
-const VerifyScreen = ({ email, mode, onVerifySuccess, navigate }) => {
-  const [code, setCode] = useState("");
-  const [error, setError] = useState("");
+const VerifyScreen = () => {
+  const { verifyCode } = useAuth();
+  const { state } = useLocation(); // Lấy state được truyền từ navigate
+  const navigate = useNavigate(); // Hook điều hướng
+  const { email, mode } = state || {}; // Destructure state, kiểm tra nếu state tồn tại
+  const [code, setCode] = useState(""); // Input mã xác thực
+  const [error, setError] = useState(""); // Xử lý lỗi
 
   const handleVerify = async () => {
-    console.log("Mode:", mode); // Kiểm tra giá trị của mode
     try {
-      // Mô phỏng việc gọi hàm verifyCode (cần tích hợp API thật khi áp dụng)
-      const response = { success: code === "1234" }; // Ví dụ mã hợp lệ là "1234"
+      console.log("Mode:", mode); // Debug mode
+      // Mô phỏng verify code (mã hợp lệ: "1234")
+      const response = await verifyCode(email, code);
+
       if (response.success) {
         if (mode === "register") {
-          alert(
-            "Tài khoản của bạn đã được xác thực! Hãy đăng nhập và tận hưởng mua sắm."
-          );
-          navigate("/login");
+          alert("Tài khoản đã được xác thực! Hãy đăng nhập.");
+          navigate("/login"); // Điều hướng tới trang đăng nhập
         } else if (mode === "forgotPassword") {
           alert("Mã xác thực hợp lệ. Nhập mật khẩu mới!");
-          navigate("/reset-password", { state: { email } });
+          navigate("/reset-password", { state: { email } }); // Điều hướng đặt lại mật khẩu
         }
-        onVerifySuccess && onVerifySuccess();
       } else {
-        throw new Error("Mã xác thực không hợp lệ. Vui lòng nhập lại!");
+        throw new Error("Mã xác thực không hợp lệ!");
       }
     } catch (e) {
       setError(e.message || "Lỗi xác thực. Vui lòng thử lại.");
     }
   };
 
+  // Phần JSX của VerifyScreen
   return (
     <Box
       sx={{
-        backgroundImage:
-          "url('https://img.lovepik.com/background/20211029/medium/lovepik-canvas-shoe-wallpaper-background-image_400288297.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
-        minHeight: "100vh",
+        alignItems: "center",
+        height: "100vh",
+        backgroundImage: "url('https://example.com/background-image.jpg')", // Đường dẫn hình nền
+        backgroundSize: "cover",
       }}
     >
       <Container
         maxWidth="sm"
         sx={{
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          backgroundColor: "white",
           borderRadius: 2,
           boxShadow: 3,
           padding: 3,
@@ -62,33 +65,27 @@ const VerifyScreen = ({ email, mode, onVerifySuccess, navigate }) => {
       >
         <Card>
           <CardContent>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}
-            >
+            <Typography variant="h5" gutterBottom>
               Xác thực tài khoản
             </Typography>
-            {error && (
-              <Alert severity="error" sx={{ mb: 2 }}>
-                {error}
-              </Alert>
-            )}
-            <Typography variant="body1" gutterBottom>
-              Nhập mã xác thực đã được gửi tới email: <strong>{email}</strong>
+            {error && <Alert severity="error">{error}</Alert>}
+            <Typography gutterBottom>
+              Vui lòng nhập mã xác thực đã gửi đến email:{" "}
+              <strong>{email}</strong>
             </Typography>
             <TextField
               label="Nhập mã xác thực"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
               fullWidth
               variant="outlined"
-              sx={{ mb: 2 }}
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              sx={{ marginBottom: 2 }}
             />
             <Button
               variant="contained"
               color="primary"
-              onClick={handleVerify}
               fullWidth
+              onClick={handleVerify}
             >
               Xác thực
             </Button>
