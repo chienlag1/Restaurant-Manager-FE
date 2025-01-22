@@ -37,7 +37,7 @@ const SidebarUser = () => {
               to="/"
               className={({ isActive }) => (isActive ? "activeClicked" : "")}
             >
-              <CDBSidebarMenuItem icon="columns">Trang Chủ</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="columns">User</CDBSidebarMenuItem>
             </NavLink>
             <NavLink
               to="/profile"

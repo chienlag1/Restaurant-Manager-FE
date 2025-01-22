@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SidebarUser from "../sidebarUser";
 
 const LayoutUser = ({ Page }) => {
@@ -8,14 +8,20 @@ const LayoutUser = ({ Page }) => {
         {/* Sidebar sẽ được đặt cố định */}
         <div
           className="fixed top-16 left-0 w-64 h-full bg-[#f9f9f9] z-40"
-          style={{ position: "fixed" }}
+          style={{
+            position: "absolute", // Sử dụng position absolute để không ảnh hưởng đến Layout page
+          }}
         >
           <SidebarUser />
         </div>
-      </div>
-      {/* Nội dung chính */}
-      <div className=" flex-1 bg-site bg-no-repeat bg-cover overflow-auto p-4 ml-64">
-        <Page />
+
+        {/* Nội dung chính: Kích thước page cố định */}
+        <div
+          className="flex-1 bg-site bg-no-repeat bg-cover overflow-auto p-4"
+          style={{ marginLeft: "64px", width: "calc(100% - 64px)" }}
+        >
+          <Page />
+        </div>
       </div>
     </div>
   );

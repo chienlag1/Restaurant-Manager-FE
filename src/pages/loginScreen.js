@@ -12,7 +12,7 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       alert("Login Failed: " + error.message);
     }
@@ -47,7 +47,7 @@ const LoginScreen = () => {
             <button
               type="button"
               style={styles.forgotPassword}
-              onClick={() => navigate("/forgot-password")}
+              onClick={() => navigate("/forget-password")}
             >
               Forgot password
             </button>
