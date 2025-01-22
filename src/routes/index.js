@@ -4,6 +4,8 @@ import LayoutUser from "../layouts/layoutUser";
 import { useRoutes } from "react-router-dom";
 import LoginScreen from "../pages/loginScreen";
 import VerifyScreen from "../pages/verifyScreen";
+import ForgetPassword from "../pages/forgetPasswordScreen";
+import NewPasswordScreen from "../pages/newPasswordScreen";
 
 const Routers = () => {
   const elements = useRoutes([
@@ -26,6 +28,14 @@ const Routers = () => {
     {
       path: "/verify",
       element: <VerifyScreen />,
+    },
+    {
+      path: "/forget-password",
+      element: <ForgetPassword></ForgetPassword>,
+    },
+    {
+      path: "/new-password",
+      element: <NewPasswordScreen></NewPasswordScreen>,
     },
   ]);
   return <div>{elements}</div>;
