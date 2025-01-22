@@ -14,7 +14,7 @@ const ForgetPassword = () => {
   const handleSendCode = async () => {
     try {
       const response = await axios.post(
-        "https://localhost:5000/users/forgot-password"
+        "https://localhost:5000/users/forget-password"
       );
 
       setSuccess(response.data.message);
