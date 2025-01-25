@@ -6,6 +6,7 @@ import LoginScreen from "../pages/loginScreen";
 import VerifyScreen from "../pages/verifyScreen";
 import ForgetPassword from "../pages/forgetPasswordScreen";
 import NewPasswordScreen from "../pages/newPasswordScreen";
+import ProfileScreen from "../pages/profileScreen";
 
 const Routers = () => {
   const elements = useRoutes([
@@ -13,10 +14,10 @@ const Routers = () => {
       path: "/",
       element: <LayoutUser Page={HomeScreen}></LayoutUser>,
     },
-    // {
-    //   path: "/profile",
-    //   element: <PrivateRouterUser Page={() => <Layout Page={Profile} />} />, // Corrected component name
-    // },
+    {
+      path: "/profile",
+      element: <ProfileScreen />,
+    },
     {
       path: "/signup",
       element: <SignupScreen />,
