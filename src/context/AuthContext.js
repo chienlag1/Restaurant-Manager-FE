@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Tạo context cho xác thực
 const AuthContext = createContext();
@@ -9,6 +10,7 @@ const AuthContext = createContext();
 // Provider cho AuthContext
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   // Đăng ký người dùng mới
   const signup = async (username, email, password) => {
@@ -74,6 +76,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     alert("sign out sucessfully");
     setUser(null);
+    navigate("/signin");
   };
 
   return (

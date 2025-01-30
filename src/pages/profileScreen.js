@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button } from "react-bootstrap"; // Import Bootstrap button
+import { Button } from "react-bootstrap";
 import UpdateProfile from "./updateProfileScreen";
 
 const Profile = () => {
   const { user } = useAuth();
   const [profileData, setProfileData] = useState(null);
-  const [showModal, setShowModal] = useState(false); // State to handle modal visibility
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +41,10 @@ const Profile = () => {
 
   const handleCloseModal = () => {
     setShowModal(false); // Đóng Modal
+  };
+
+  const handleProfileUpdate = (updatedData) => {
+    setProfileData(updatedData); // Cập nhật profileData ngay khi modal lưu thành công
   };
 
   if (!user) {
@@ -95,11 +99,11 @@ const Profile = () => {
           </div>
           <div className="row mt-3">
             <div className="col-md-12">
-              <label className="labels">Mobie number</label>
+              <label className="labels">Mobile number</label>
               <input
                 type="text"
                 className="form-control"
-                value={profileData.mobileNumber}
+                value={profileData.phoneNumber}
                 disabled
               />
             </div>
@@ -127,13 +131,12 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Add button to show Modal */}
           <div className="mt-5 text-center d-flex">
             <div className="button-container">
               <Button
                 variant="primary"
                 className="profile-button"
-                onClick={handleShowModal} // Trigger modal display
+                onClick={handleShowModal}
               >
                 Update Profile
               </Button>
@@ -146,7 +149,8 @@ const Profile = () => {
       <UpdateProfile
         show={showModal}
         handleClose={handleCloseModal}
-        profileData={profileData} // Pass profile data to modal for editing
+        profileData={profileData}
+        onProfileUpdate={handleProfileUpdate} // Thêm prop này
       />
     </div>
   );
