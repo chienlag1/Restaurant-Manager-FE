@@ -13,10 +13,11 @@ export const AuthProvider = ({ children }) => {
   // Đăng ký người dùng mới
   const signup = async (username, email, password) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/users/signup",
-        { username, email, password }
-      );
+      const response = await axios.post("http://localhost:5000/users/signup", {
+        username,
+        email,
+        password,
+      });
       return response.data;
     } catch (error) {
       throw error.response.data;
@@ -26,10 +27,10 @@ export const AuthProvider = ({ children }) => {
   // Xác minh mã
   const verifyCode = async (email, code) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/users/verify",
-        { email, code }
-      );
+      const response = await axios.post("http://localhost:5000/users/verify", {
+        email,
+        code,
+      });
       return { success: response.data };
     } catch (error) {
       throw error.response.data;
@@ -52,14 +53,15 @@ export const AuthProvider = ({ children }) => {
   // Đăng nhập
   const login = async (email, password) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/users/login",
-        { email, password }
-      );
+      const response = await axios.post("http://localhost:5000/users/login", {
+        email,
+        password,
+      });
       // Lưu trữ thông tin người dùng
       setUser({
         username: response.data.username,
         id: response.data.userId,
+        email: response.data.email,
         token: response.data.token,
       });
       return response.data;
@@ -70,6 +72,7 @@ export const AuthProvider = ({ children }) => {
 
   // Đăng xuất
   const logout = () => {
+    alert("sign out sucessfully");
     setUser(null);
   };
 
