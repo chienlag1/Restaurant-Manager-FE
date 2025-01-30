@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Card, Alert, Typography, Box } from "@mui/material"; // Sử dụng MUI
-import { useAuth } from "../context/AuthContext";
+
 import axios from "axios";
 
 const ForgetPassword = () => {
-  const { resetPassword } = useAuth();
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -14,7 +13,8 @@ const ForgetPassword = () => {
   const handleSendCode = async () => {
     try {
       const response = await axios.post(
-        "https://localhost:5000/users/forget-password"
+        "http://localhost:5000/users/forget-password", // Dùng http
+        { email }
       );
 
       setSuccess(response.data.message);

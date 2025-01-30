@@ -40,8 +40,7 @@ const NewPasswordScreen = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundImage: `url('https://img.lovepik.com/background/20211029/medium/lovepik-canvas-shoe-wallpaper-background-image_400288297.jpg')`,
-        backgroundSize: "cover",
+        backgroundImage: `url('https://www.hot-dinners.com/images/stories/blog/2022/operanew2.jpg')`, // Đường dẫn tới hình nền        backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
@@ -53,8 +52,16 @@ const NewPasswordScreen = () => {
           Đặt lại mật khẩu
         </Typography>
 
-        {error && <Alert severity="error" sx={{ marginBottom: 2 }}>{error}</Alert>}
-        {success && <Alert severity="success" sx={{ marginBottom: 2 }}>{success}</Alert>}
+        {error && (
+          <Alert severity="error" sx={{ marginBottom: 2 }}>
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" sx={{ marginBottom: 2 }}>
+            {success}
+          </Alert>
+        )}
 
         <TextField
           label="Mật khẩu mới"
