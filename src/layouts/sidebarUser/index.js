@@ -9,8 +9,11 @@ import {
 } from "cdbreact";
 import { NavLink } from "react-router-dom";
 import Footer from "../footer";
+import { Button } from "react-bootstrap";
+import { useAuth } from "../../context/AuthContext";
 
 const SidebarUser = () => {
+  const { logout } = useAuth();
   return (
     <div
       style={{
@@ -63,6 +66,10 @@ const SidebarUser = () => {
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
+          <Button variant="danger" onClick={logout} style={{ width: "100%" }}>
+            Logout
+          </Button>
+
           <div style={{ padding: "20px 5px" }}>
             <Footer />
           </div>
