@@ -8,6 +8,10 @@ import ForgetPassword from "../pages/forgetPasswordScreen";
 import NewPasswordScreen from "../pages/newPasswordScreen";
 import ProfileScreen from "../pages/profileScreen";
 
+import UpdateProfile from "../pages/updateProfileScreen";
+
+
+
 const Routers = () => {
   const elements = useRoutes([
     {
@@ -16,7 +20,8 @@ const Routers = () => {
     },
     {
       path: "/profile",
-      element: <ProfileScreen />,
+
+      element: <LayoutUser Page={ProfileScreen}></LayoutUser>,
     },
     {
       path: "/signup",
@@ -37,6 +42,10 @@ const Routers = () => {
     {
       path: "/new-password",
       element: <NewPasswordScreen></NewPasswordScreen>,
+    },
+    {
+      path: "/update-profile",
+      element: <UpdateProfile></UpdateProfile>,
     },
   ]);
   return <div>{elements}</div>;
