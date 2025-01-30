@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import SidebarUser from "../sidebarUser";
 
 const LayoutUser = ({ Page }) => {
