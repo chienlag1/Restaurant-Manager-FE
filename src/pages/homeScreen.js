@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
         <div style={{ display: "flex" }}>
           <div>
             <h2 style={{ margin: "0px" }}>Shoes</h2>
-            <h7>For the brands</h7>
+            <h6>For the brands</h6>
           </div>
           <div>
             <input
@@ -93,7 +93,7 @@ const HomeScreen = ({ navigation }) => {
               borderRadius: "5px",
             }}
           >
-            <sppan>Filters</sppan>
+            <span>Filters</span>
             {filterCount > 0 && <span>{filterCount}</span>}
           </button>
 
