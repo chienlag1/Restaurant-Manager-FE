@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import UpdateProfile from "./updateProfileScreen";
+import NewPasswordScreen from "./newPasswordScreen";
+import EditPasswordScreen from "./editPasswordScreen";
 
 const Profile = () => {
   const { user } = useAuth();
   const [profileData, setProfileData] = useState(null);
+  const [modalType, setModalType] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -35,16 +38,37 @@ const Profile = () => {
     }
   }, [user, navigate]);
 
-  const handleShowModal = () => {
-    setShowModal(true); // Hiển thị Modal khi nhấn nút Update Profile
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false); // Đóng Modal
-  };
-
   const handleProfileUpdate = (updatedData) => {
     setProfileData(updatedData); // Cập nhật profileData ngay khi modal lưu thành công
+  };
+
+  const handleShowUpdateProfile = () => {
+    setModalType("updateProfile"); // Chỉ rõ modal cần hiển thị
+    setShowModal(true); // Hiển thị modal
+  };
+
+  const handleShowChangePassword = () => {
+    setModalType("changePassword"); // Chỉ rõ modal cần hiển thị
+    setShowModal(true); // Hiển thị modal
+  };
+
+  const handleChangepassword = async (currentPassword, newPassword) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/users/edit-password`, // API for password change
+        { password: currentPassword, newPassword },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      alert("Password updated successfully");
+      setShowModal(false); // Close modal on success
+    } catch (error) {
+      console.error("Password change failed", error);
+      alert("Password change failed");
+    }
   };
 
   if (!user) {
@@ -135,10 +159,19 @@ const Profile = () => {
             <div className="button-container">
               <Button
                 variant="primary"
-                className="profile-button"
-                onClick={handleShowModal}
+                className="profile-button me-3"
+                onClick={handleShowUpdateProfile}
               >
                 Update Profile
+              </Button>
+            </div>
+            <div className="button-container">
+              <Button
+                variant="primary"
+                className="profile-button"
+                onClick={handleShowChangePassword}
+              >
+                Change Password
               </Button>
             </div>
           </div>
@@ -146,12 +179,21 @@ const Profile = () => {
       </div>
 
       {/* Modal component to update profile */}
-      <UpdateProfile
-        show={showModal}
-        handleClose={handleCloseModal}
-        profileData={profileData}
-        onProfileUpdate={handleProfileUpdate} // Thêm prop này
-      />
+      {modalType === "updateProfile" && (
+        <UpdateProfile
+          show={showModal}
+          handleClose={() => setShowModal(false)}
+          profileData={profileData}
+          onProfileUpdate={handleProfileUpdate}
+        />
+      )}
+      {modalType === "changePassword" && (
+        <EditPasswordScreen
+          show={showModal}
+          handleClose={() => setShowModal(false)}
+          onResetPassword={handleChangepassword}
+        />
+      )}
     </div>
   );
 };
