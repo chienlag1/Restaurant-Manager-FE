@@ -7,10 +7,7 @@ import VerifyScreen from "../pages/verifyScreen";
 import ForgetPassword from "../pages/forgetPasswordScreen";
 import NewPasswordScreen from "../pages/newPasswordScreen";
 import ProfileScreen from "../pages/profileScreen";
-
 import UpdateProfile from "../pages/updateProfileScreen";
-
-
 
 const Routers = () => {
   const elements = useRoutes([
