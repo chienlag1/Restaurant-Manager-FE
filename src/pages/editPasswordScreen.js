@@ -28,17 +28,22 @@ function EditPasswordScreen({ show, handleClose }) {
       setError("Passwords do not match.");
       return;
     }
-  
+
     setLoading(true);
     try {
-      const response = await axios.put("http://localhost:5000/users/editPass", 
-        { password: oldPassword, newPassword },  
-        { headers: { Authorization: `Bearer ${user.token}`, "Content-Type": "application/json" } }
+      const response = await axios.put(
+        "http://localhost:5000/users/editPass",
+        { password: oldPassword, newPassword },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       setSuccess(response.data.message || "Password updated successfully!");
       setError("");
-  
-      
+
       setTimeout(() => {
         handleClose();
         setSuccess("");
@@ -55,30 +60,61 @@ function EditPasswordScreen({ show, handleClose }) {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Password</Modal.Title>
+        <Modal.Title>Edit Passwordjewfjwe0jf</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3" controlId="oldPassword">
             <Form.Label>Old Password</Form.Label>
-            <Form.Control type="password" name="oldPassword" value={oldPassword} onChange={handleChange} placeholder="Enter old password" required />
+            <Form.Control
+              type="password"
+              name="oldPassword"
+              value={oldPassword}
+              onChange={handleChange}
+              placeholder="Enter old password"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="newPassword">
             <Form.Label>New Password</Form.Label>
-            <Form.Control type="password" name="newPassword" value={newPassword} onChange={handleChange} placeholder="Enter new password" required />
+            <Form.Control
+              type="password"
+              name="newPassword"
+              value={newPassword}
+              onChange={handleChange}
+              placeholder="Enter new password"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="confirmPassword">
             <Form.Label>Confirm New Password</Form.Label>
-            <Form.Control type="password" name="confirmPassword" value={confirmPassword} onChange={handleChange} placeholder="Confirm new password" required />
+            <Form.Control
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm new password"
+              required
+            />
           </Form.Group>
           {error && <Alert variant="danger">{error}</Alert>}
           {success && <Alert variant="success">{success}</Alert>}
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Button variant="primary" onClick={handleResetPassword} disabled={loading}>
-          {loading ? <Spinner animation="border" size="sm" /> : "Update Password"}
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button
+          variant="primary"
+          onClick={handleResetPassword}
+          disabled={loading}
+        >
+          {loading ? (
+            <Spinner animation="border" size="sm" />
+          ) : (
+            "Update Password"
+          )}
         </Button>
       </Modal.Footer>
     </Modal>
