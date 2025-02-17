@@ -8,13 +8,20 @@ import ForgetPassword from "../pages/forgetPasswordScreen";
 import NewPasswordScreen from "../pages/newPasswordScreen";
 import ProfileScreen from "../pages/profileScreen";
 import UpdateProfile from "../pages/updateProfileScreen";
+import MenuScreen from "../pages/menuScreen";
+import CartScreen from "../pages/cartScreen";
 
 const Routers = () => {
   const elements = useRoutes([
     {
       path: "/",
-      element: <LayoutUser Page={HomeScreen}></LayoutUser>,
+      element: <HomeScreen />,
     },
+    {
+      path: "/menu",
+      element: <LayoutUser Page={MenuScreen}></LayoutUser>,
+    },
+
     {
       path: "/profile",
 
@@ -43,6 +50,10 @@ const Routers = () => {
     {
       path: "/update-profile",
       element: <UpdateProfile></UpdateProfile>,
+    },
+    {
+      path: "/cart",
+      element: <LayoutUser Page={CartScreen}></LayoutUser>,
     },
   ]);
   return <div>{elements}</div>;

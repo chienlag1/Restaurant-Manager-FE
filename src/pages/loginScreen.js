@@ -12,7 +12,7 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/menu");
     } catch (error) {
       alert("Login Failed: " + error.message);
     }

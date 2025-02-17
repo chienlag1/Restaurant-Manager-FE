@@ -11,9 +11,11 @@ import { NavLink } from "react-router-dom";
 import Footer from "../footer";
 import { Button } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
+import { FaUserCircle, FaShoppingCart } from "react-icons/fa"; // Import thêm icon giỏ hàng
 
 const SidebarUser = () => {
   const { logout } = useAuth();
+
   return (
     <div
       style={{
@@ -25,19 +27,13 @@ const SidebarUser = () => {
     >
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a
-            href="/"
-            className="text-decoration-none"
-            style={{ color: "inherit" }}
-          >
-            Restaurant
-          </a>
+          <FaUserCircle size={40} color="white" />
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink
-              to="/"
+              to="/menu"
               className={({ isActive }) => (isActive ? "activeClicked" : "")}
             >
               <CDBSidebarMenuItem icon="columns">User</CDBSidebarMenuItem>
@@ -52,14 +48,14 @@ const SidebarUser = () => {
               to="/tables"
               className={({ isActive }) => (isActive ? "activeClicked" : "")}
             >
-              <CDBSidebarMenuItem icon="user">Đặt bàn</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="user">Đặt Bàn</CDBSidebarMenuItem>
             </NavLink>
             <NavLink
-              to="/analytics"
+              to="/cart"
               className={({ isActive }) => (isActive ? "activeClicked" : "")}
             >
-              <CDBSidebarMenuItem icon="chart-line">
-                Thống Kê
+              <CDBSidebarMenuItem icon="shopping-cart">
+                Giỏ Hàng
               </CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

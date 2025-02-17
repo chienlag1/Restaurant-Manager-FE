@@ -37,7 +37,7 @@ const SignupScreen = ({ navigation }) => {
 
         <input
           type="text"
-          placeholder="HỌ VÀ TÊN"
+          placeholder="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           style={styles.input}

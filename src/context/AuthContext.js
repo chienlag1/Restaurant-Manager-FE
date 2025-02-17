@@ -72,11 +72,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Đăng xuất
   const logout = () => {
-    alert("sign out sucessfully");
-    setUser(null);
-    navigate("/signin");
+    const confirmLogout = window.confirm(
+      "Bạn có chắc chắn muốn đăng xuất không?"
+    );
+    if (confirmLogout) {
+      setUser(null);
+      navigate("/signin");
+    }
   };
 
   return (
