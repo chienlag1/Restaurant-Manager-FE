@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TextField, Button, Card, Typography, Box, Alert } from "@mui/material";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const NewPasswordScreen = () => {
   const { resetPassword } = useAuth();

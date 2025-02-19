@@ -11,12 +11,12 @@ const ProductCard = ({ product, isSelected, onClick, onAddToCart }) => {
       <img
         style={{ border: "20px" }}
         src={product.imageUrl}
-        class="card-img-top"
+        className="card-img-top"
         alt={product.name}
       />
-      <div class="card-body">
-        <h5 class="card-title">{product.name}</h5>
-        <p class="card-text">{product.price.toLocaleString("vi-VN")} VND</p>
+      <div className="card-body">
+        <h5 className="card-title">{product.name}</h5>
+        <p className="card-text">{product.price.toLocaleString("vi-VN")} VND</p>
         <button className="btn btn-primary" onClick={onAddToCart}>
           Buy
         </button>
