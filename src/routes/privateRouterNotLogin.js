@@ -1,15 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRouterNotLogin = ({ Page }) => {
-  const isLogin = useSelector((state) => state.auth.isLoggedIn); // Lấy trạng thái đăng nhập từ Redux Store
+const PrivateRoute = ({ requiredRole }) => {
+  const role = localStorage.getItem("role");
 
-  if (isLogin) {
-    return <Navigate to="/" />; // Chuyển hướng nếu đã đăng nhập
+  if (!role) {
+    return <Navigate to="/login" replace />; // Chưa đăng nhập, quay về login
   }
 
-  return <Page />; // Hiển thị component nếu chưa đăng nhập
+  if (role !== requiredRole) {
+    return <Navigate to="/" replace />; // Không có quyền, về trang chính
+  }
+
+  return <Outlet />; // Cho phép vào trang
 };
 
-export default PrivateRouterNotLogin;
+export default PrivateRoute;

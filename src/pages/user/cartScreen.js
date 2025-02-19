@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import ProductCard from "../component/productCard";
+import ProductCard from "../../component/productCard";
 
 const CartScreen = () => {
   const [cartItems, setCartItems] = useState([]);

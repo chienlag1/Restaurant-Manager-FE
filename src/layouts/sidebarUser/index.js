@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 import Footer from "../footer";
 import { Button } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
-import { FaUserCircle, FaShoppingCart } from "react-icons/fa"; // Import thêm icon giỏ hàng
+import { FaUserCircle } from "react-icons/fa"; // Import thêm icon giỏ hàng
 
 const SidebarUser = () => {
   const { logout } = useAuth();
@@ -25,7 +25,7 @@ const SidebarUser = () => {
         overflow: "auto",
       }}
     >
-      <CDBSidebar textColor="#fff" backgroundColor="#333">
+      <CDBSidebar textColor="#fff" backgroundColor="#333" toggled={false}>
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <FaUserCircle size={40} color="white" />
         </CDBSidebarHeader>

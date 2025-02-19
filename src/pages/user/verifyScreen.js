@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom"; // Chú ý đến việc sử dụng useNavigate
 import { useLocation } from "react-router-dom";
 const VerifyScreen = () => {

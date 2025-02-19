@@ -1,18 +1,29 @@
-import HomeScreen from "../pages/homeScreen";
+import HomeScreen from "../pages/user/homeScreen";
 import SignupScreen from "../pages/signupScreen";
 import LayoutUser from "../layouts/layoutUser";
 import { useRoutes } from "react-router-dom";
 import LoginScreen from "../pages/loginScreen";
-import VerifyScreen from "../pages/verifyScreen";
-import ForgetPassword from "../pages/forgetPasswordScreen";
-import NewPasswordScreen from "../pages/newPasswordScreen";
-import ProfileScreen from "../pages/profileScreen";
-import UpdateProfile from "../pages/updateProfileScreen";
-import MenuScreen from "../pages/menuScreen";
-import CartScreen from "../pages/cartScreen";
+import VerifyScreen from "../pages/user/verifyScreen";
+import ForgetPassword from "../pages/user/forgetPasswordScreen";
+import NewPasswordScreen from "../pages/user/newPasswordScreen";
+import ProfileScreen from "../pages/user/profileScreen";
+import UpdateProfile from "../pages/user/updateProfileScreen";
+import MenuScreen from "../pages/user/menuScreen";
+import CartScreen from "../pages/user/cartScreen";
+import LayoutAdmin from "../layouts/layoutAdmin";
+import adminScreen from "../pages/admin/adminScreen";
+import ProfileAdminScreen from "../pages/admin/profileAdminScreen";
 
 const Routers = () => {
   const elements = useRoutes([
+    {
+      path: "/admin-dashboard",
+      element: <LayoutAdmin Page={adminScreen} />,
+    },
+    {
+      path: "/admin-profile",
+      element: <LayoutAdmin Page={ProfileAdminScreen} />,
+    },
     {
       path: "/",
       element: <HomeScreen />,

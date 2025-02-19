@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "../component/productCard"; // Import component ProductCard
-import { useAuth } from "../context/AuthContext";
+import ProductCard from "../../component/productCard"; // Import component ProductCard
+import { useAuth } from "../../context/AuthContext";
 
 function MenuScreen() {
   const { user } = useAuth();
@@ -14,7 +14,7 @@ function MenuScreen() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/products");
+        const response = await axios.get("http://localhost:5000/products");
         console.log("API Response:", response.data);
         setProducts(response.data);
       } catch (error) {
@@ -34,7 +34,7 @@ function MenuScreen() {
       return;
     }
     try {
-      await axios.post(`http://localhost:5001/cart/${user.id}`, {
+      await axios.post(`http://localhost:5000/cart/${user.id}`, {
         productId: product._id,
         quantity: 1,
       });

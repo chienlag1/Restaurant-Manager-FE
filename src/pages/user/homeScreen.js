@@ -1,11 +1,11 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import carousel1 from "../assets/carousel1.png";
-import aboutus from "../assets/aboutus.png";
+import carousel1 from "././../../assets/carousel1.png";
+import aboutus from "././../../assets/aboutus.png";
 import { useState } from "react";
-import main1 from "../assets/main1.png";
-import main2 from "../assets/main2.png";
-import main3 from "../assets/main3.png";
+import main1 from "././../../assets/main1.png";
+import main2 from "././../../assets/main2.png";
+import main3 from "././../../assets/main3.png";
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
 import { FaFacebookF, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +85,7 @@ const HomeScreen = () => {
 
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => navigate("/signin")}
           >
             Book a table

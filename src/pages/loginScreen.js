@@ -11,8 +11,24 @@ const LoginScreen = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
-      navigate("/menu");
+      const response = await login(email, password);
+
+      // Kiểm tra xem phản hồi có hợp lệ không
+      if (!response || !response.token) {
+        throw new Error("Invalid response from server");
+      }
+
+      const { token, role, userId } = response;
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+      localStorage.setItem("userId", userId);
+
+      // Điều hướng dựa trên vai trò
+      if (role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/menu");
+      }
     } catch (error) {
       alert("Login Failed: " + error.message);
     }
