@@ -80,7 +80,7 @@ const SignupScreen = ({ navigation }) => {
 
         <p style={styles.footerText}>
           Already have an account?{" "}
-          <span style={styles.signInLink} onClick={() => navigate("/Login")}>
+          <span style={styles.signInLink} onClick={() => navigate("/signin")}>
             Sign in here!
           </span>
         </p>

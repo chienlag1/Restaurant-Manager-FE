@@ -39,7 +39,7 @@ const SidebarAdmin = () => {
               <NavLink to="/admin-profile" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="table">Profile</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink to="/" activeClassName="activeClicked">
+              <NavLink to="/admin-table" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="user">
                   Quản Lí Bàn Ăn
                 </CDBSidebarMenuItem>
@@ -56,10 +56,7 @@ const SidebarAdmin = () => {
             <Button variant="danger" onClick={logout} style={{ width: "100%" }}>
               Logout
             </Button>
-
-            <div style={{ padding: "20px 5px" }}>
-              <Footer />
-            </div>
+            <Footer />
           </CDBSidebarFooter>
         </CDBSidebar>
       </div>

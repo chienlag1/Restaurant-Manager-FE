@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       // Kiểm tra xem email có phải là email của admin không
-      if (email.endsWith("@example.com")) {
+      if (email.endsWith("@admin.com")) {
         try {
           const adminResponse = await axios.post(
             "http://localhost:5000/admin/login",
@@ -73,10 +73,7 @@ export const AuthProvider = ({ children }) => {
             navigate("/admin-dashboard");
             return adminResponse.data;
           }
-        } catch (adminError) {
-          // Nếu đăng nhập admin thất bại, bỏ qua và không hiển thị lỗi
-          console.log("Not an admin, trying user login...");
-        }
+        } catch (adminError) {}
       }
 
       // Gọi API đăng nhập user

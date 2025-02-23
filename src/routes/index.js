@@ -12,18 +12,25 @@ import MenuScreen from "../pages/user/menuScreen";
 import CartScreen from "../pages/user/cartScreen";
 import LayoutAdmin from "../layouts/layoutAdmin";
 import adminScreen from "../pages/admin/adminScreen";
-import ProfileAdminScreen from "../pages/admin/profileAdminScreen";
+
+import AdminTableScreen from "../pages/admin/adminTableScreen";
+import AdminProfileScreen from "../pages/admin/adminProfileScreen";
 
 const Routers = () => {
   const elements = useRoutes([
+    {
+      path: "/admin-profile",
+      element: <LayoutAdmin Page={AdminProfileScreen} />,
+    },
     {
       path: "/admin-dashboard",
       element: <LayoutAdmin Page={adminScreen} />,
     },
     {
-      path: "/admin-profile",
-      element: <LayoutAdmin Page={ProfileAdminScreen} />,
+      path: "/admin-table",
+      element: <LayoutAdmin Page={AdminTableScreen} />,
     },
+
     {
       path: "/",
       element: <HomeScreen />,
